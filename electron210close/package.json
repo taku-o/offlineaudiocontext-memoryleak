@@ -1,0 +1,16 @@
+{
+  "name": "elderly-carriage-slink",
+  "productName": "elderly-carriage-slink",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "taku.omi",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^2.0.16"
+  }
+}

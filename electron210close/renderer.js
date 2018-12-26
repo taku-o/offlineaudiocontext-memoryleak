@@ -2,7 +2,6 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 var fs = require('fs');
-var audioCtx = new window.AudioContext();
 
 function toArrayBuffer(buf) {
     var _aBuffer = new ArrayBuffer(buf.length);
@@ -26,6 +25,7 @@ btn.addEventListener('click', function(elm, ev) {
         console.log('read wav');
 
         // decode audio
+        var audioCtx = new window.AudioContext();
         var aBuffer = toArrayBuffer(bufWav);
         audioCtx.decodeAudioData(aBuffer).then(function(decodedData) {
             console.log('decode wav');
@@ -53,6 +53,10 @@ btn.addEventListener('click', function(elm, ev) {
                 audioNode.connect(audioCtx.destination);
                 audioNode.onended = function(evEnd) {
                   console.log('play processed wav ended');
+
+                  audioNode.disconnect();
+                  audioCtx.close();
+                  console.log('close audio node');
                 };
                 audioNode.start(0);
                 console.log('play processed wav');
