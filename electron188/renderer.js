@@ -4,11 +4,11 @@
 var fs = require('fs');
 var audioCtx = new window.AudioContext();
 
-function toArrayBuffer(bufWav) {
-    var _aBuffer = new ArrayBuffer(bufWav.length);
+function toArrayBuffer(buf) {
+    var _aBuffer = new ArrayBuffer(buf.length);
     var view = new Uint8Array(_aBuffer);
-    for (let i = 0; i < bufWav.length; ++i) {
-        view[i] = bufWav[i];
+    for (let i = 0; i < buf.length; ++i) {
+        view[i] = buf[i];
     }
     return _aBuffer;
 }
@@ -18,7 +18,7 @@ btn.addEventListener('click', function(elm, ev) {
     console.log('click play');
 
     // read
-    fs.readFile('./voice.wav', 'binary', function(err, bufWav) {
+    fs.readFile('./voice.wav', function(err, bufWav) {
         if (err) {
             console.log('failed to read wav. path %s', './voice.wav');
             return false;
@@ -58,6 +58,4 @@ btn.addEventListener('click', function(elm, ev) {
     });
 
 }, false);
-
-
 
