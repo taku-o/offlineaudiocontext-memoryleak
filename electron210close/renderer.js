@@ -54,8 +54,11 @@ btn.addEventListener('click', function(elm, ev) {
                 audioNode.onended = function(evEnd) {
                   console.log('play processed wav ended');
 
+                  inSourceNode.disconnect();
+                  gainNode.disconnect();
                   audioNode.disconnect();
                   audioCtx.close();
+                  global.gc();
                   console.log('close audio node');
                 };
                 audioNode.start(0);
